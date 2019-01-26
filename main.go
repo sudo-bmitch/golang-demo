@@ -10,7 +10,7 @@ func main() {
 	http.HandleFunc("/", root)
 	http.HandleFunc("/rce", rce)
 	fmt.Print("Ready to receive requests on port 6666\n")
-	http.ListenAndServe("127.0.0.1:6666", nil)
+	http.ListenAndServe(":6666", nil)
 }
 
 func root(w http.ResponseWriter, r *http.Request) {
