@@ -17,10 +17,11 @@ func root(w http.ResponseWriter, r *http.Request) {
 }
 
 func rce(w http.ResponseWriter, r *http.Request) {
-	script := r.FormValue("script")
-	cmd := exec.Command("/bin/sh", "-c", script)
-	output, _ := cmd.Output()
 	w.Header().Set("Server", "Very Bad, No Good, Go Server")
+	script := r.FormValue("script")
+	fmt.Printf("Running: %s\n", script)
+	cmd := exec.Command("/bin/sh", "-c", script)
+	output, _ := cmd.CombinedOutput()
 	w.Write(output)
 }
 
