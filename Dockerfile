@@ -1,4 +1,5 @@
 FROM golang:latest
 WORKDIR /app
 COPY . /app/
-CMD go run main.go
+RUN go build -o app .
+CMD ./app
