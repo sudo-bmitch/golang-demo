@@ -1,0 +1,7 @@
+FROM golang-demo:latest as release
+
+FROM busybox as inspect
+COPY --from=release / /scratch
+WORKDIR /scratch
+CMD find .
+
