@@ -10,4 +10,4 @@ FROM scratch as release
 WORKDIR /app
 COPY --from=build /app/app /app/app
 USER appuser
-CMD ./app
+CMD [ "./app" ]
